@@ -2,7 +2,7 @@
 const express = require("express");
 const cors = require("cors");
 const exp = require("constants");
-const fileUpload = require("express-fileupload");
+// const fileUpload = require("express-fileupload");
 const path = require("path");
 
 require("dotenv").config;
@@ -15,7 +15,7 @@ const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
-app.use(fileUpload());
+// app.use(fileUpload());
 
 //defiene routes
 // const uploadRoutes = require("./routes/uploadRoutes")
