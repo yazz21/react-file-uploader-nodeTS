@@ -13,7 +13,7 @@ const fileUp = require("../controller/file.controller")
 //   filename: (req: any, file: { originalname: any; }, cb: (arg0: null, arg1: any) => void) => {
 //     try {
 //       cb(null, Date.now() + path.extname(file.originalname));
-//       // cb(null, file.fieldname + '-' + Date.now());
+//       // cb(null, file.filename + '-' + Date.now());
 //     } catch (error) {
 //       console.log(error);
 //     }
@@ -29,7 +29,7 @@ const fileUp = require("../controller/file.controller")
 //         filename: (req: any, file:any, cb: any) => {
 //             cb(
 //                 null,
-//                 file.fieldname + "-" + Date.now() + "-" + file.originalname
+//                 file.filename + "-" + Date.now() + "-" + file.originalname
 //             )
 //         }
 //     })
@@ -41,23 +41,36 @@ const storage = multer.diskStorage({
     },
     filename: function (req:any, file: any, cb: any) {
       const uniqueSuffix = Date.now()
-      cb(null, file.fieldname + '-' + uniqueSuffix + file.originalname)
+      cb(null, file.filename + '-' + uniqueSuffix + file.originalname)
     }
   })
-  
-  const upload = multer({ storage: storage })
 
-// const upload = multer({ dest: 'uploads/' })
+ // Multer Filter
+// const multerFilter = (req:any, file: any, cb: any) => {
+    // if (file.size >) {
+    //   cb(null, true);
+    // } else {
+    //   cb(new Error("Not a PDF File!!"), false);
+    // }
+//   };
+  
+  const upload = multer({ storage: storage,limits:{
+    fileSize: 12000000
+} } )
 
 module.exports = (app:any) => {
 
   app.post("/api/file/upload", upload.single("file"), fileUp.upload)
-
-//   app.post("/api/addstory", Story.create);
  
-//   app.get("/file/:title", fileUp.getOne);
-//   app.get("/api/story/get", fileUp.getAll);
+  app.get("/api/file/getall", fileUp.getAll);
+  app.get("/api/file/:filename", fileUp.getOne);
+  app.post("/api/file/create", fileUp.create);
+  app.delete("/api/file/:filename", fileUp.delete);
+  
   
  
 
 };
+
+
+
