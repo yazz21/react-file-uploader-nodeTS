@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, {Fragment, useState} from 'react'
-import {Form, Button} from 'react-bootstrap'
 import Message from './Message';
 import Progress from './Progress';
 
@@ -22,7 +21,8 @@ export const FileUpload = () => {
         formData.append('file', file);
 
         try {
-            const res = await axios.post('http://localhost:5000/api/file/upload', formData, {
+            // const res = await axios.post('http://localhost:5000/api/file/upload', formData, {
+            const res = await axios.post('http://localhost:5100/api/v1/file', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 },
@@ -33,7 +33,8 @@ export const FileUpload = () => {
                 }
             });
 
-
+            console.log(res);
+            
             // Clear percentage
             setTimeout(() => setUploadPercentage(0), 10000);
 
@@ -43,6 +44,8 @@ export const FileUpload = () => {
 
             setMessage('File Uploaded');
         } catch (err : any) {
+            console.log('err: ',err);
+            
             if (err.response.status === 500) {
                 setMessage('There was a problem with the server');
             } else {
@@ -51,6 +54,7 @@ export const FileUpload = () => {
             setUploadPercentage(0);
         }
     }
+    
 
     return (
         <Fragment> {
@@ -85,7 +89,9 @@ export const FileUpload = () => {
                             alt=''/>
                     </div>
                 </div>
-            ) : null
-        } </Fragment>
+            ) : null  
+        } 
+        {/*<BUtton />*/}
+        </Fragment>
     );
 }

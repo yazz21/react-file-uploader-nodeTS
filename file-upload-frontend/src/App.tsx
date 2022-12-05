@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {FileUpload} from './components/FileUpload';
+import { GetAll } from "./components/GetAll";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         </h4>
 
         <FileUpload/>
+        <GetAll />
     </div>
   )
 }
