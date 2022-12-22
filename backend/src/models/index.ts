@@ -1,33 +1,52 @@
-// import { Sequelize } from "sequelize/types/sequelize";
-const Sequelize = require("sequelize")
+import File from './file.model'
 
-const fs = require('fs');
-var db: any
+export {
+  File
+}
 
-const sequeliz = new Sequelize('reactFileUpload', 'yazz', 'yazz', {
-    host: 'localhost',
-    dialect: 'mysql'
-});
-fs.readdirSync(__dirname)
-  .filter((file: string) => file !== 'index.js')
-  .forEach((file: any) => {
-    // const model = sequelize.import(path.join(__dirname, file));
-    const model = require(path.join(__dirname, file))(sequeliz, Sequelize.DataTypes);
+
+
+
+
+
+
+
+
+
+
+
+
+// // import { Sequelize } from "sequelize/types/sequelize";
+// const Sequelize = require("sequelize")
+
+// const fs = require('fs');
+// var db: any
+
+// const sequeliz = new Sequelize('reactFileUpload', 'yazz', 'yazz', {
+//     host: 'localhost',
+//     dialect: 'mysql'
+// });
+// fs.readdirSync(__dirname)
+//   .filter((file: string) => file !== 'index.js')
+//   .forEach((file: any) => {
+//     // const model = sequelize.import(path.join(__dirname, file));
+//     const model = require(path.join(__dirname, file))(sequeliz, Sequelize.DataTypes);
 
     
-    db[model.name] = model;
-    // console.log(model)
-  });
+//     db[model.name] = model;
+//     // console.log(model)
+//   });
 
-Object.keys(db).forEach(function(modelName) {
-  if ('associate' in db[modelName]) {
-    db[modelName].associate(db);
-  }
-});
+// Object.keys(db).forEach(function(modelName) {
+//   if ('associate' in db[modelName]) {
+//     db[modelName].associate(db);
+//   }
+// });
 
-db.sequelize = sequeliz;
-db.Sequelize = Sequelize;
+// db.sequelize = sequeliz;
+// db.Sequelize = Sequelize;
 
-Sequelize.sync({ alter: true }).then(() => {});
+// Sequelize.sync({ alter: true }).then(() => {});
 
-module.exports = db;
+// module.exports = db;
+

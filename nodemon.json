@@ -1,0 +1,6 @@
+{
+    "watch": ["backend/src"],
+    "ext": ".ts,.js",
+    "ignore": [],
+    "exec": "/media/yazz/projectvolume/React/file-upload/backend/node_modules/.bin/ts-node ./backend/src/index.ts"
+  }

@@ -13,11 +13,14 @@ module.exports = {
           res.json({ fileName: file.filename, filePath: `../uploads/${file.name}` });
 
   },
-  async create(req: any, res: any) {
-    console.log(req.body);
+  async create (req: any, res: any) {
+    console.log('create controller: ',req.file);
+    if (req.files === null) {
+      return res.status(400).json({ msg: 'No File Upload' });
+  }
     
     try {
-        const fieldname = req.body.fileName;
+        const fieldname = req.body.fieldname;
         const originalname = req.body.originalname;
         const encoding = req.body.encoding;
         const mimetype = req.body.mimetype;
@@ -26,7 +29,6 @@ module.exports = {
         const path = req.body.path;
         const size = req.body.size;
 
-      const title = req.body.title;
       const saveToFileUpload = await file.create({
          fieldname,
          originalname, 
@@ -63,7 +65,6 @@ module.exports = {
       });
     }
   },
-
   async getOne(req:any, res: any) {
     try {
       const story = await file.findOne({
@@ -83,7 +84,6 @@ module.exports = {
       });
     }
   },
-
   async deleteFile(req: any, res: any) {
     try {
       const del = await file.destroy({

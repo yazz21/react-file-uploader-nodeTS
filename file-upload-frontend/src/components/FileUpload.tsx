@@ -70,7 +70,7 @@ export const FileUpload = () => {
 
                 <Progress percentage={uploadPercentage}/>
 
-                <input type='submit' value='Upload' className='btn btn-primary btn-block mt-4'/>
+                <input type='submit' disabled={!file} value='Upload' className='btn btn-primary btn-block mt-4'/>
             </form>
             {
             uploadedFile ? (

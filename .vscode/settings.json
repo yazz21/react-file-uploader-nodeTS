@@ -1,0 +1,34 @@
+{
+    "sqltools.connections": [
+        {
+            "mssqlOptions": {
+                "appName": "SQLTools",
+                "useUTC": true,
+                "encrypt": true,
+                "instanceName": "XOKASQL2017"
+            },
+            "previewLimit": 50,
+            "server": "192.168.0.104/XOKASQL2017",
+            "port": 1433,
+            "askForPassword": true,
+            "driver": "MSSQL",
+            "name": "XOKASQL2017",
+            "group": "XOKASQL2017",
+            "username": "dev",
+            "connectString": "Data Source=192.168.0.104/XOKASQL2017;Initial Catalog=XOKA_OROMADA;Integrated Security=False;User ID=dev;Password=dev;"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "yazz",
+            "username": "root",
+            "password": "password",
+            "database": "fileupload"
+        }
+    ]
+}
